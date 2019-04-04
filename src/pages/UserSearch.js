@@ -22,7 +22,7 @@ class UserSearch extends Component {
   }
 
   handlePageChange(page=1){
-    this.setState({searchOptions: {page: page, per_page: this.state.searchOptions.per_page, sort: this.state.searchOptions.sort}, loading: true}, () => {
+    this.setState({searchOptions: {page: page, per_page: this.state.searchOptions.per_page, sort: this.state.searchOptions.sort, order: this.state.searchOptions.order}, loading: true}, () => {
       this.GetResults();
     });
   }
@@ -131,7 +131,7 @@ class UserSearch extends Component {
     ){
     var self = this;
     let url = "http://localhost:3100/github/search/users";
-    let payload = {q: searchText};
+    let payload = {q: searchText, page: options.page, per_page: options.per_page, sort: options.sort, order: options.order};
     fetch(url, {
       method: 'POST',
       headers: headers,
